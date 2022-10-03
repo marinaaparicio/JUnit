@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>NTT Data Clientes</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+ 	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Nombre</th>
+                <th scope="col">Primer apellido</th>
+                <th scope="col">Segundo apellido</th>
+                <th scope="col">DNI</th>
+                <th scope="col">Eliminar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<th:block th:each="customer : ${customerList}">
+				<tr>
+					<td scope="row" th:text="${customer.id}"></td>
+                    <td scope="row" th:text="${customer.name}"></td>
+                    <td scope="row" th:text="${customer.surName}"></td>
+                    <td scope="row" th:text="${customer.surName2}"></td>
+                    <td scope="row" th:text="${customer.DNI}"></td>
+                    <td scope="row" th:text="${customer.showCustomersViewDropInd}"></td>
+                        <form action = actDropCustomer method = "post"></form>
+                            <button th:disabled="${btnDropCustomerEnabled}" type="submit"
+                                id="btnDropCustomer" name="customerId" th:value="${customer.id}"
+                                class="btn btn-danger">Eliminar</button>
+				</tr>
+			</th:block>
+		</tbody>
+	</table>
+
+    <a class="btn btn-success" th:href="@{index}" id="aBtnReturn" role="button">Volver</a>
+
+</body>
+</html>
